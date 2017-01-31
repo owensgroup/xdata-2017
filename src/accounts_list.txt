@@ -1,0 +1,5 @@
+#filename preoffset_lines postoffset_lines preoffset_chars postoffset_chars seperator null_chars [column field]
+Myspace.com.txt,0,0,0,0,:,,1,email,2,user_name,3,pwd_SHA1
+Base_users_adobe.com,1,0,0,0,|,-,2,email,3,pwd_encryted,4,pwd_hint
+000webhost.txt,0,0,0,0,:,,0,user_name,1,email,2,ip,3,pwd
+
