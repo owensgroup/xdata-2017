@@ -11,13 +11,21 @@ def ReadTxt( txtfile, Print=False ):
     for line in iter(f):
         if Print is True:
             print line
-        line = line.split(':')
-        for subline in line:
-            #print subline
-            addr = sa.parse(subline)
-            if addr is not None and len(addr)>=5:
-                print addr
-                return addr
+        if len(line)<200:
+            line = line.split(':')
+            for subline in line:
+                addr = sa.parse(subline)
+                if Print is True:
+                    print addr
+                # 1. Longest street in US is 34 chars
+                # 2. If have 'number', 'street', 'type'
+                #    then try to look at next row for 'city' and 'state'
+                # 3. If only have 'city'
+                #    then try to look at next row for 'state'
+                if (addr is not None and len(addr)>=5) and \
+                    ('street' in addr.keys() and len( addr['street'] )<=34): 
+                    print addr
+                    return addr
         #break
         #if i > 2:
         #    break
@@ -40,8 +48,12 @@ def main():
 
     if len(sys.argv)<2:
         print "Usage: python read_txt.py ../samples/dox"
+        print "       python read_txt.py -v ../samples/dox"
 
-    GetDir( sys.argv[1] )
+    if sys.argv[1]=='-v':
+        GetDir( sys.argv[2], True )
+    else:
+        GetDir( sys.argv[1] )
 
 if __name__ == "__main__":
     main()
