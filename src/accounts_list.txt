@@ -1,5 +1,27 @@
 #filename preoffset_lines postoffset_lines preoffset_chars postoffset_chars seperator null_chars [column field]
-Myspace.com.txt,0,0,0,0,:,,1,email,2,user_name,3,pwd_SHA1
+Myspace.com.txt,0,0,0,0,:,',1,email,2,username,3,pwd_SHA1
 Base_users_adobe.com,1,0,0,0,|,-,2,email,3,pwd_encryted,4,pwd_hint
-000webhost.txt,0,0,0,0,:,,0,user_name,1,email,2,ip,3,pwd
+000webhost.txt,0,0,0,0,:, ,0,username,1,email,2,ip,3,pwd
+MPGH.net_vb_April_2015.txt,1,0,0,0,	, ,1,username,2,email,3,ip,4,pwd_hash
+Mpgh.txt,1,0,0,0,	, ,1,username,2,email,3,ip,4,pwd_hash
+Xsplit Plain SHA1 Parsed-1.txt,0,0,0,0,	, ,0,username,1,name,2,email,3,pwd_hash
+schat.csv,0,0,0,0,",","",1,username,2,city
+Snapchat CSV.csv,0,0,0,0,",","",1,username,2,city
+stratfor_users.csv,1,0,0,0,",","",1,username,2,pwd_MD5,3,email,22,timezone
+forbes-wp_users.txt,0,0,0,0,;,"",1,username,2,pwd_MD5,4,email,5,web,9,name
+SEA Forbes.txt,0,0,0,0,;,"",1,username,2,pwd_MD5,4,email,5,web,9,name
+5mgmail.txt,0,0,0,0,:,,0,email,1,pwd
+gmail-5mil-passwords2.txt,0,0,0,0,:,,0,email,1,pwd
+NextGenUpdate.com_vb_30_Jan_2014,0,0,0,0,:,,0,username,1,email,2,ip,3,pwd_hash
+4000000 Mail.ru.txt,0,0,0,0,:,,0,email,1,username
+forbes_wp_users.txt,13,0,0,0,;,"",1,username,2,pwd_MD5,4,email,5,web,9,name
+gawker_full_db.log,0,0,0,0,:, ,0,username,3,pwd_SHA1,9,email
+comcast3.txt,1,0,1,2,",",()' ,3,username,8,pwd
+comcast2.txt,0,0,0,0,:,,0,email,1,pwd
+comcast1.txt,0,0,0,0,",",,0,email,1,name,2,address
+gmail.txt,0,0,0,0,:,,0,email,1,pwd
+gmail.txt.part.txt,0,0,0,0,",",,0,email,1,name,2,address
+merge100kgmailsnodupes.txt,0,0,0,0,",",,0,email,1,name,2,address
+#Abusewith.us DB Lookup - aaa.txt,7,0,0,0,:,,0,username,1,email,2,ip,3,pwd_hash,4,pwd_salt
+google_5000000.txt,0,0,0,0,:,,0,email
 
