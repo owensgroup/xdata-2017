@@ -12,6 +12,8 @@ class Builder:
     def __init__( self ):
         self.nodes = {}
         self.graph = [] # 12 columns, 13th column will be adjacency list
+        self.nvert = 0
+        self.nedge = 0
 
     def CountWord(self, filename):
     	with open(filename) as f:
@@ -27,7 +29,9 @@ class Builder:
                     self.graph.append(row)
                     self.nodes[row[0]] = count
                 count += 1
-
+            self.nvert = count
+            #print self.nodes
+            
     def GetDir( self, filename, txt_dir, Print=False ):
         with open(filename, 'rb') as f:
             reader = csv.reader(f, delimiter='|', quoting=csv.QUOTE_NONE)
@@ -38,37 +42,51 @@ class Builder:
                 if count>=0:
                     #print row
                     if row[2] != '':
-	                hosts = subprocess.check_output('grep -r -m1 "'+row[1] \
-                                +' '+row[2]+' '+row[3]+'" '+txt_dir, shell=True)
+                        try:
+	                    hosts = subprocess.check_output('grep -r -m1 "'+row[1] \
+                                    +' '+row[2]+' '+row[3]+'" '+txt_dir, shell=True)
+                        except subprocess.CalledProcessError:
+                            hosts = ''
                     else:
-	                hosts = subprocess.check_output('grep -r -m1 "'+row[1] \
-                                +' '+row[3]+'" '+txt_dir, shell=True)
-                    print hosts
-                    print hosts.count('\n')
+                        try:
+	                    hosts = subprocess.check_output('grep -r -m1 "'+row[1] \
+                                    +' '+row[3]+'" '+txt_dir, shell=True)
+                        except subprocess.CalledProcessError:
+                            hosts = ''
+                    #print hosts
+                    #print hosts.count('\n')
                     if hosts.count('\n') > 1:
                         hosts = hosts.splitlines()
                         for host in hosts:
                             idx_end = host.find(':')
                             target = host[idx_begin:idx_end]
                             if target!=row[0]:
-                                target_count = self.nodes[target]
-                                self.graph[count][13].append(target_count)
-                                print "edge added: "+target
+                                target_count = self.nodes.get(target,None)
+                                if target_count == None:
+                                    target_count = len(self.nodes)
+                                    self.nodes[target] = target_count
+                                    new_row = [target]
+                                    self.graph.append( new_row )
+
+                                self.graph[count][12].append(target_count)
+                                #print "edge added: "+target
+                                self.nedge += 1
+                                print count, target_count
                 count += 1
 
-    def Print( self, txtobjs ):
-        print txtobjs.get('file',          '') + '|'\
-            + txtobjs.get('number',        '') + '|'\
-            + txtobjs.get('prefix',        '') + '|'\
-            + txtobjs.get('street',        '') + '|'\
-            + txtobjs.get('type',          '') + '|'\
-            + txtobjs.get('suffix',        '') + '|'\
-            + txtobjs.get('sec_unit_type', '') + '|'\
-            + txtobjs.get('sec_unit_num',  '') + '|'\
-            + txtobjs.get('city',          '') + '|'\
-            + txtobjs.get('state',         '') + '|'\
-            + txtobjs.get('zip',           '') + '|'\
-            + txtobjs.get('zip_ext',       '')
+    def Print( self, filename ):
+        old_nvert = self.nvert
+        self.nvert = len( self.nodes )
+        print self.nvert, self.nvert, self.nedge
+
+    # TODO: 1) fix append to different file
+    #       2) add SSN support
+    #       3) add name support
+
+        with open(filename.split('.')[0]+'_grep.csv', "a") as myfile:
+            for row in self.graph[old_nvert:]:
+                myfile.write(row[0]+'|||||||||||')
+
 def main():
 
     # Test case
@@ -79,7 +97,9 @@ def main():
         print "Usage: python build_txt.py ../samples/address.csv ../samples/dox10"
 
     graph = Builder()
+    graph.BuildNodes( sys.argv[1], sys.argv[2] )
     graph.GetDir( sys.argv[1], sys.argv[2] )
+    #graph.Print() 
 
 if __name__ == "__main__":
     main()

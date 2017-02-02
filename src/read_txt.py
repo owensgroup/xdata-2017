@@ -177,6 +177,10 @@ class Parser:
                 self.Print( txtobjs )
     
     def Print( self, txtobjs ):
+        txtobjs['street'] = txtobjs['street'].replace('[','')
+        txtobjs['street'] = txtobjs['street'].replace(']','')
+        txtobjs['street'] = txtobjs['street'].replace('(','')
+        txtobjs['street'] = txtobjs['street'].replace(')','')
         print txtobjs.get('file',          '') + '|'\
             + txtobjs.get('number',        '') + '|'\
             + txtobjs.get('prefix',        '') + '|'\
