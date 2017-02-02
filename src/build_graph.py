@@ -66,6 +66,8 @@ class Builder:
                                     target_count = len(self.nodes)
                                     self.nodes[target] = target_count
                                     new_row = [target]
+                                    #new_row.append(target)
+                                    #print target_count, new_row
                                     self.graph.append( new_row )
 
                                 self.graph[count][12].append(target_count)
@@ -83,9 +85,12 @@ class Builder:
     #       2) add SSN support
     #       3) add name support
 
-        with open(filename.split('.')[0]+'_grep.csv', "a") as myfile:
+        with open('temp.csv', "w") as myfile:
             for row in self.graph[old_nvert:]:
-                myfile.write(row[0]+'|||||||||||')
+                print row[0]
+                myfile.write(row[0]+'|||||||||||\n')
+        os.system('cat '+filename+' temp.csv > '+filename[:-4]+'_grep.csv')
+        os.system('rm temp.csv')
 
 def main():
 
@@ -99,7 +104,7 @@ def main():
     graph = Builder()
     graph.BuildNodes( sys.argv[1], sys.argv[2] )
     graph.GetDir( sys.argv[1], sys.argv[2] )
-    #graph.Print() 
+    graph.Print( sys.argv[1] ) 
 
 if __name__ == "__main__":
     main()
