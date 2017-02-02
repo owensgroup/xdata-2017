@@ -34,8 +34,8 @@ class Parser:
                     addr = sa.parse(subline)
                     if (addr is not None and len(addr)>=5) and \
                         ('street' in addr.keys() and len( addr['street'] )<=34) and \
-                        ('number' in addr.keys()) and \
-                        ('city' in addr.keys()): #and \
+                        ('number' in addr.keys()):# and \
+                        #('city' in addr.keys()): #and \
                         #('state' in addr.keys()):
                         #(addr not in addr_list):
                            #addr_list.append(addr)
