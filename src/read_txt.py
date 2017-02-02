@@ -6,15 +6,28 @@ import sys
 import copy
 import streetaddress as sa
 from nltk.tag import StanfordNERTagger
+from future_builtins import map
+from collections import Counter
+from itertools import chain
 
 class Parser:
 
     def __init__( self ):
         self.st = StanfordNERTagger('english.conll.4class.distsim.crf.ser.gz')
+        self.nodes = {}
+        self.graph = []
+
+    def CountWord(self, filename):
+    	with open(filename) as f:
+        	return Counter(chain.from_iterable(map(str.split, f))) 
 
     def ReadFastTxt( self, txtfile, Print=False ):
         f = open(txtfile, 'r')
+        #addr_list = []
+        #count = 1
         for line in iter(f):
+            #if count==0:
+            #    break
             if len(line)<200:
                 line = line.split(':')
                 for subline in line:
@@ -22,9 +35,14 @@ class Parser:
                     if (addr is not None and len(addr)>=5) and \
                         ('street' in addr.keys() and len( addr['street'] )<=34) and \
                         ('number' in addr.keys()) and \
-                        ('city' in addr.keys()) and \
-                        ('state' in addr.keys()):
-                        return addr
+                        ('city' in addr.keys()): #and \
+                        #('state' in addr.keys()):
+                        #(addr not in addr_list):
+                           #addr_list.append(addr)
+                           return addr
+                           #count -= 1
+                           #break
+        #return addr_list
 
     def ReadSlowTxt( self, txtfile, Print=False ):
         state = 0
@@ -142,16 +160,35 @@ class Parser:
     def GetDir( self, txt_dir, Print=False ):
         txt_files = [pos_txt for pos_txt in os.listdir(txt_dir)]
         #print len(txt_files), txt_files
+        print 'file|number|prefix|street|type|suffix|sec_unit_num|' \
+            +'sec_unit_type|city|state|zip|zip_ext'
+        count = 0
         for txt_file in txt_files:
 	    txt_path = txt_dir+'/'+txt_file
             if Print is True:
                 print txt_path
     	    txtobjs = self.ReadFastTxt( txt_path, Print )
-            if txtobjs is None:
-    	        txtobjs = self.ReadSlowTxt( txt_path, Print )
-            print txtobjs
-        return
-
+            if txtobjs is not None:
+    	    #    txtobjs = self.ReadSlowTxt( txt_path, Print )
+                txtobjs['file'] = txt_file
+                #self.graph.append(txtobjs)
+                #self.nodes[txt_file] = count
+                #count += 1
+                self.Print( txtobjs )
+    
+    def Print( self, txtobjs ):
+        print txtobjs.get('file',          '') + '|'\
+            + txtobjs.get('number',        '') + '|'\
+            + txtobjs.get('prefix',        '') + '|'\
+            + txtobjs.get('street',        '') + '|'\
+            + txtobjs.get('type',          '') + '|'\
+            + txtobjs.get('suffix',        '') + '|'\
+            + txtobjs.get('sec_unit_type', '') + '|'\
+            + txtobjs.get('sec_unit_num',  '') + '|'\
+            + txtobjs.get('city',          '') + '|'\
+            + txtobjs.get('state',         '') + '|'\
+            + txtobjs.get('zip',           '') + '|'\
+            + txtobjs.get('zip_ext',       '')
 def main():
 
     # Test case
@@ -160,13 +197,9 @@ def main():
 
     if len(sys.argv)<2:
         print "Usage: python read_txt.py ../samples/dox"
-        print "       python read_txt.py -v ../samples/dox"
 
     parse = Parser()
-    if sys.argv[1]=='-v':
-        parse.GetDir( sys.argv[2], True )
-    else:
-        parse.GetDir( sys.argv[1] )
+    parse.GetDir( sys.argv[1] )
 
 if __name__ == "__main__":
     main()
