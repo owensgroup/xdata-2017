@@ -73,7 +73,7 @@ class Builder:
                                 self.graph[count][12].append(target_count)
                                 #print "edge added: "+target
                                 self.nedge += 1
-                                print count, target_count
+                                print count+1, target_count+1
                 count += 1
 
     def Print( self, filename ):
@@ -85,12 +85,15 @@ class Builder:
     #       2) add SSN support
     #       3) add name support
 
-        with open('temp.csv', "w") as myfile:
-            for row in self.graph[old_nvert:]:
-                print row[0]
-                myfile.write(row[0]+'|||||||||||\n')
-        os.system('cat '+filename+' temp.csv > '+filename[:-4]+'_grep.csv')
-        os.system('rm temp.csv')
+        with open(filename[:-4]+'_grep.csv', "w") as myfile:
+            myfile.write(str(old_nvert)+' '+str(self.nvert)+'\n')
+            count=0
+            for row in self.graph:
+                #print row[0]
+                myfile.write(str(count)+' '+row[0]+'\n')
+                count+=1
+        #os.system('cat '+filename+' temp.csv > '+filename[:-4]+'_grep.csv')
+        #os.system('rm temp.csv')
 
 def main():
 
