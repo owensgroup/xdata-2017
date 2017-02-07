@@ -63,14 +63,18 @@ string Remove_NullChars(string str_in, string null_chars)
         {
             str_out = str_out + str_in[i];
             valid_found = true;
+        } else {
+            //cout << "x" << str_in[i];
         }
     }
+    //cout << int(str_in[0]) << " ";
     return str_out;
 }
 
 int main()
 {
     string account_dir = "/data/xdata-2017/grouped/accounts/";
+    string table_dir = "/data/xdata-2017/grouped/tables/";
     ifstream file_list;
     //string *file_record = new string[128];
     //string *account_records = new string[128];
@@ -92,9 +96,9 @@ int main()
 
         string file_name = file_record[0];
         int preoffset_lines = atoi(file_record[1].c_str());
-        int postoffset_lines = atoi(file_record[2].c_str());
-        int preoffset_chars = atoi(file_record[3].c_str());
-        int postoffset_chars = atoi(file_record[4].c_str());
+        //int postoffset_lines = atoi(file_record[2].c_str());
+        //int preoffset_chars = atoi(file_record[3].c_str());
+        //int postoffset_chars = atoi(file_record[4].c_str());
         string seperator = file_record[5];
         string null_chars = file_record[6];
         map<unsigned int, string> file_columns;
@@ -110,10 +114,14 @@ int main()
         if (seperator == "\"\"") seperator = '\"';
         if (null_chars == "\"\"") null_chars = "\"";
         cout << "seperator = " << char(seperator[0]) << endl; 
+        cout << "nullchar = " << null_chars << endl;
 
         ifstream accounts_in;
+        ofstream table_out;
+        vector<map<string, string> > table_contents;
         long long account_counter = 0;
         accounts_in.open((account_dir + file_record[0]).c_str());
+        table_out.open((table_dir + file_record[0] + ".table").c_str()); 
         if (!accounts_in.is_open()) continue;
         while (!accounts_in.eof())
         {
@@ -125,10 +133,11 @@ int main()
             if (accounts_in.eof()) continue;
 
             vector<string> account_records;
+            map<string, string> account_contents;
             Seperate_String(account_str, seperator[0], account_records);
             //account_record = Seperate_String(account_str, seperator[0]);
             //int num_account_records = Seperate_String(account_str, seperator[0], 128, account_records);
-            cout << account_str << endl;
+            //cout << account_str << endl;
             //for (auto it = account_records.begin(); it != account_records.end(); it++)
             //{
             //    *it = Remove_NullChars(*it, null_chars);
@@ -141,21 +150,112 @@ int main()
                 if ( it -> first >= account_records.size()) continue;
                 string column = it -> second;
                 string content = account_records[it -> first];
+                if (content == "") continue;
                 content = Remove_NullChars(content, null_chars);
-                if (column == "name" || column == "address" || column == "email"
-                    || column == "username" || column == "pwd"
-                    || column == "pwd_SHA1" || column == "pwd_MD5"
-                    || column == "pwd_hint" || column == "city")
+                //if (column == "name" || column == "address" || column == "email"
+                //    || column == "username" || column == "pwd"
+                //    || column == "pwd_SHA1" || column == "pwd_MD5"
+                //    || column == "pwd_hint" || column == "city")
                 {
                     for (unsigned int i=0; i<content.size(); i++)
+                    {
                         content[i] = tolower(content[i]);
+                        if (content[i] == '\t') content[i] = ' ';
+                    }
                 }
-                if (content != "") cout << column << " = " << content << " | ";
+                if (content == "<blank>") continue;
+                if (content == "null") continue;
+
+                if (column == "phone")
+                {
+                    for (int i=0; i<signed(content.length()); i++)
+                    {
+                        char ch = content[i];
+                        if (ch == 'x') continue;
+                        if (ch >= '0' && ch <= '9') continue;
+                        content.erase(i); i--; 
+                    }
+                }
+
+                if (column == "email")
+                {
+                }
+                account_contents[column] = content;
+                //if (content != "") cout << column << " = " << content << " | ";
             }
-            cout << endl;
-            if (account_counter > 100) break;
+
+            if (account_contents["lastname"] != "" || account_contents["firstname"] != "")
+            {
+                account_contents["name"] = account_contents["firstname"] + " " + account_contents["lastname"];
+                account_contents.erase("lastname");
+                account_contents.erase("firstname");
+            }
+
+            if (account_contents["dob_day"] != "" || account_contents["dob_month"] != ""
+                || account_contents["dob_year"] != "")
+            {
+                account_contents["birthday"] = account_contents["dob_year"] + "-" +
+                    account_contents["dob_month"] + "-" + account_contents["dob_day"];
+                account_contents.erase("dob_year");
+                account_contents.erase("dob_month");
+                account_contents.erase("dob_day");
+            }
+            //cout << endl;
+            //if (account_counter > 100) break;
+            if (!account_contents.empty()) table_contents.push_back(account_contents);
+            if ((account_counter % 1000) == 0) cout << account_counter << "\t";
         }
+        cout << endl;
+
+        //bool birthday_added = false;
+        //bool name_added = false;
+        auto it = file_columns.begin();
+        while (it != file_columns.end())
+        {
+            string column = it -> second;
+            if (column == "dob_day" || column == "dob_month" || column == "dob_year")
+            {
+                file_columns[100] = "birthday";
+                //birthday_added = true;
+                auto temp_it = it;
+                it ++;
+                file_columns.erase(temp_it);
+                continue;
+            }
+
+            if (column == "firstname" || column == "lastname")
+            {
+                file_columns[101] = "name";
+                //name_added = true;
+                auto temp_it = it;
+                it ++;
+                file_columns.erase(temp_it);
+                continue;
+            }
+            it ++;
+        }
+
+        for (it = file_columns.begin(); it != file_columns.end(); it ++)
+        {
+            if ( it != file_columns.begin()) table_out << "\t";
+            table_out << it -> second;
+        }
+        table_out << endl;
+
+        for (auto table_it = table_contents.begin(); table_it != table_contents.end(); table_it++)
+        {
+            auto &account_contents = *table_it;
+            for (it = file_columns.begin(); it != file_columns.end(); it++)
+            {
+                if (it != file_columns.begin()) table_out << "\t";
+                table_out << account_contents[it -> second];
+            }
+            table_out << endl;
+            account_contents.clear();
+        }
+        table_contents.clear();
         accounts_in.close();
+        table_out.close();
         //break;
     }
     file_list.close();

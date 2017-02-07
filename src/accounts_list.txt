@@ -1,27 +1,109 @@
 #filename preoffset_lines postoffset_lines preoffset_chars postoffset_chars seperator null_chars [column field]
-Myspace.com.txt,0,0,0,0,:,',1,email,2,username,3,pwd_SHA1
-Base_users_adobe.com,1,0,0,0,|,-,2,email,3,pwd_encryted,4,pwd_hint
-000webhost.txt,0,0,0,0,:, ,0,username,1,email,2,ip,3,pwd
-MPGH.net_vb_April_2015.txt,1,0,0,0,	, ,1,username,2,email,3,ip,4,pwd_hash
-Mpgh.txt,1,0,0,0,	, ,1,username,2,email,3,ip,4,pwd_hash
-Xsplit Plain SHA1 Parsed-1.txt,0,0,0,0,	, ,0,username,1,name,2,email,3,pwd_hash
-schat.csv,0,0,0,0,",","",1,username,2,city
-Snapchat CSV.csv,0,0,0,0,",","",1,username,2,city
-stratfor_users.csv,1,0,0,0,",","",1,username,2,pwd_MD5,3,email,22,timezone
-forbes-wp_users.txt,0,0,0,0,;,"",1,username,2,pwd_MD5,4,email,5,web,9,name
-SEA Forbes.txt,0,0,0,0,;,"",1,username,2,pwd_MD5,4,email,5,web,9,name
-5mgmail.txt,0,0,0,0,:,,0,email,1,pwd
-gmail-5mil-passwords2.txt,0,0,0,0,:,,0,email,1,pwd
-NextGenUpdate.com_vb_30_Jan_2014,0,0,0,0,:,,0,username,1,email,2,ip,3,pwd_hash
-4000000 Mail.ru.txt,0,0,0,0,:,,0,email,1,username
-forbes_wp_users.txt,13,0,0,0,;,"",1,username,2,pwd_MD5,4,email,5,web,9,name
-gawker_full_db.log,0,0,0,0,:, ,0,username,3,pwd_SHA1,9,email
-comcast3.txt,1,0,1,2,",",()' ,3,username,8,pwd
-comcast2.txt,0,0,0,0,:,,0,email,1,pwd
-comcast1.txt,0,0,0,0,",",,0,email,1,name,2,address
-gmail.txt,0,0,0,0,:,,0,email,1,pwd
-gmail.txt.part.txt,0,0,0,0,",",,0,email,1,name,2,address
-merge100kgmailsnodupes.txt,0,0,0,0,",",,0,email,1,name,2,address
-#Abusewith.us DB Lookup - aaa.txt,7,0,0,0,:,,0,username,1,email,2,ip,3,pwd_hash,4,pwd_salt
-google_5000000.txt,0,0,0,0,:,,0,email
+#Myspace.com.txt,0,0,0,0,:,',1,email,2,username,3,pwd_SHA1
+#Base_users_adobe.com,1,0,0,0,|,-,2,email,3,pwd_encryted,4,pwd_hint
+#000webhost.txt,0,0,0,0,:, ,0,username,1,email,2,ip,3,pwd
+#MPGH.net_vb_April_2015.txt,1,0,0,0,	, ,1,username,2,email,3,ip,4,pwd_hash
+#Mpgh.txt,1,0,0,0,	, ,1,username,2,email,3,ip,4,pwd_hash
+#Xsplit Plain SHA1 Parsed-1.txt,0,0,0,0,	, ,0,username,1,name,2,email,3,pwd_hash
+#Xsplit Plain SHA1 Parsed-2.txt,0,0,0,0,	, ,0,username,1,name,2,email,3,pwd_hash
+#schat.csv,0,0,0,0,",","",0,phone,1,username,2,city
+#Snapchat CSV.csv,0,0,0,0,",","",0,phone,1,username,2,city
+#stratfor_users.csv,1,0,0,0,",","",1,username,2,pwd_MD5,3,email,22,timezone
+#forbes-wp_users.txt,0,0,0,0,;,"",1,username,2,pwd_MD5,4,email,5,web,9,name
+#SEA Forbes.txt,0,0,0,0,;,"",1,username,2,pwd_MD5,4,email,5,web,9,name
+#5mgmail.txt,0,0,0,0,:,,0,email,1,pwd
+#gmail-5mil-passwords2.txt,0,0,0,0,:,,0,email,1,pwd
+#NextGenUpdate.com_vb_30_Jan_2014,0,0,0,0,:,,0,username,1,email,2,ip,3,pwd_hash
+#4000000 Mail.ru.txt,0,0,0,0,:,,0,email,1,pwd
+#forbes_wp_users.txt,13,0,0,0,;,"",1,username,2,pwd_MD5,4,email,5,web,9,name
+#gawker_full_db.log,0,0,0,0,:, ,0,username,3,pwd_SHA1,9,email
+#comcast3.txt,1,0,1,2,",",()' 	,2,username,7,pwd
+#comcast2.txt,0,0,0,0,:,,0,email,1,pwd
+#comcast1.txt,0,0,0,0,",",,0,email,1,name,2,address
+#gmail.txt,0,0,0,0,:,,0,email,1,pwd
+#gmail.txt.part.txt,0,0,0,0,",",,0,email,1,name,2,address
+#merge100kgmailsnodupes.txt,0,0,0,0,",",,0,email,1,name,2,address
+#merge100khotmail.txt,0,0,0,0,",",,0,email,1,name,2,address
+##Abusewith.us DB Lookup - aaa.txt,7,0,0,0,:,,0,username,1,email,2,ip,3,pwd_hash,4,pwd_salt
+#google_5000000.txt,0,0,0,0,:,,0,email
+#c140577dba80165c6ee1892cbbd96e3959f810f2e00cfecebcb35db1f01e1e89.txt,0,0,0,0,:,,0,email,1,pwd
+#bf22ac7e8c54aeed6f208868b90d2aedd9b16db7def7b2ce7aa33bcd46ffcd29.txt,3,0,0,0,:,,0,email,1,pwd
+#bf762f660bd6e25b02d31586d3e21dcd19cbf9521a3ad97a1197d608f9f608b6.txt,0,0,0,0,:,,0,email,1,pwd
+#ca9cc6141bf6c994c4b01889a02933bf514f1e995958e42ec287ad800beb88c7.txt,3,0,0,0,:,,0,email,1,pwd
+#cc2cb8f3c71460ac0f76a2505ad2e42b60aa2b7b9b5b6a82c929aab530cc5f2a.txt,0,0,0,0,:,,0,email,1,pwd
+#d14d829304b1a8ca4c6f84fee24960a268456752380cb1ccc8a1099339c3ad6f.txt,1,0,0,0,:,,0,email,1,pwd
+#e6c7c1f6cc7814a00baa334af459eaca5a92adbeed835749f673653fe372852e.txt,1,0,0,0,:,,0,email,1,pwd
+#ea38afecbfb1578e8522396c6981c6d3cbe3900f16025eb37ef4c8e869b9633e.txt,0,0,0,0,:,,0,email,1,pwd
+#ec3770ed05b3eb0e7107c8807cb370319c74d9c2d617b39f842651507ad031ee.txt,0,0,0,0,:,,0,email,1,pwd
+#ec3d816822a70e3cc498931d133657b9d9d52c34de058b99e41e9d4d7fc4a5f6.txt,0,0,0,0,:,,0,email,1,pwd
+#f21cfc4e45a191550109e31b6424521b4079a67c3c781019290ad953b5239cd9.txt,0,0,0,0,:,,0,email,1,pwd
+#fc420b32362cb3f43b4e193b3c9a48d3fb5a510aa06715763cc76324e18d0260.txt,0,0,0,0,:,,0,email,1,pwd
+#crackingforum.com.txt,0,0,0,0,	, ,0,username,1,email,2,ip,3,pwd_hash
+#crackingHeaven.txt,0,0,0,0,:,,0,username,1,pwd_hash
+#Abandonia.com_vb_November_2015.txt,0,0,0,0,:,,0,username,1,email,2,ip,3,pwd_hash,4,pwd_salt
+#Habbost.txt,0,0,0,0,:,,0,username,1,pwd_hash,2,email,3,ip
+#HabboSt.txt,12,0,0,0,:,,0,username,1,pwd_hash,2,email,3,ip
+#PS3Hax.net.txt,0,0,0,0,	, ,0,username,5,birthday,6,ip,7,email,8,pwd_hash
+#hostinger.txt,0,0,0,0,",",,0,ip,1,username,2,email,3,pwd
+#0sec-db.txt,1,0,0,0,",",,0,username,1,email
+#mangatrader.txt,0,0,0,0,:,,0,email,1,pwd_hash
+#mangatrader.txt.1,0,0,0,0,:,,0,email,1,pwd_hash
+#agpestores.com_151K_Hacked_By_0x2Taylor.txt,18,0,0,0,",",,0,email,12,address,16,pwd_hash,19,zip,20,phone,23,name
+#1000000 yandex.txt,0,0,0,0,:,,0,email,1,pwd
+#100kmsnliveoutlook.txt,0,0,0,0,",",,0,email,1,name,2,address
+#bulkcheck.txt,0,0,0,0,:,,0,email,1,pwd_hash,2,state
+#5000000 Gmail.txt,0,0,0,0,:,,0,email,1,pwd
+#gmail.txt,0,0,0,0,:,,0,email,1,pwd
+#WildStart database part (1).csv,1,0,0,0,;,,0,username,1,email
+#WildStart database part (2).csv,1,0,0,0,;,,0,username,1,email
+#WildStart database part (3).csv,1,0,0,0,;,,0,username,1,email
+#WildStart database part (4).csv,1,0,0,0,;,,0,username,1,email
+#WildStart database part (5).csv,1,0,0,0,;,,0,username,1,email
+#WildStart database part (6).csv,1,0,0,0,;,,0,username,1,email
+#WildStart database part (7).csv,1,0,0,0,;,,0,username,1,email
+#WildStart database part (8).csv,1,0,0,0,;,,0,username,1,email
+#battlefield.txt,0,0,0,0,;,"",0,username,1,pwd_hash
+#outlook-msn.txt,0,0,0,0,",",,0,email,1,name,2,address
+#outlook.txt,0,0,0,0,:,,0,email,1,pwd_hash,2,state
+#hotmailAN.txt,0,0,0,0,",",,0,email,1,name,2,address
+#hotmailAP.txt,0,0,0,0,:,,0,email,1,pwd
+#hotmail.txt,0,0,0,0,",",,0,email,1,name,2,address
+#Hotmailsbizopjan.txt,0,0,0,0,",",,0,email,1,name,2,address
+#Hotmail&Yahoo.txt,0,0,0,0,:,,0,email,1,pwd
+#gratisgodis.txt,0,0,0,0,;,,0,email,1,pwd
+#1.txt,0,0,0,0, ,,1,username,2,email,3,pwd_hash,4,pwd
+#yahoo.txt,0,0,0,0,:,,1,email,2,pwd
+#Yahoo.txt,0,0,0,0,:,,1,email,2,pwd
+#bloggtoppen.txt,0,0,0,0,	, ,0,username,1,pwd_hash,2,email
+#Soulsplit.txt,0,0,0,0, ,,1,username,3,pwd
+#SoulSplit (1).txt,0,0,0,0,:,,0,username,1,pwd
+#SoulSplit (2).txt,0,0,0,0,:,,0,username,1,pwd
+#SoulSplit (3).txt,0,0,0,0,:,,0,username,1,pwd
+#SoulSplit (4).txt,0,0,0,0,	, ,0,username,2,pwd_hash
+#SoulSplit (5).txt,0,0,0,0,	, ,0,username,2,pwd_hash
+#SoulSplit (6).txt,0,0,0,0,:,,0,username,1,pwd
+#SoulSplit (8).txt,0,0,0,0, ,,4,username,7,email,10,pwd_hash
+#aff 1.txt,1,0,0,0,",",,3,username,4,email,19,gender,20,race,21,birthday,22,state,23,zip,24,ip
+#aff 2.txt,1,0,0,0,",",,0,email
+#aff 3.txt,1,0,0,0,",",,0,email
+#aff 4.txt,1,0,0,0,",",,0,email
+#aff 5.txt,1,0,0,0,",",,0,email
+#aff 6.txt,1,0,0,0,",",,0,email,6,zip,9,ip
+#aff 7.txt,1,0,0,0,",",,0,email,6,zip,9,ip
+#aff 8.txt,1,0,0,0,",",,0,email,6,zip
+#aff 9.txt,1,0,0,0,",",,0,email,6,zip
+#aff 10.txt,1,0,0,0,",",,0,email
+#aff 11.txt,1,0,0,0,",",,1,email,3,gender,4,birthday,6,zip,7,ip
+#aff 12.txt,1,0,0,0,",",,11,username,12,email
+#aff 13.txt,1,0,0,0,",",,11,username,12,email
+#aff 14.txt,1,0,0,0,",",,11,username,12,email
+#avstv.com.db,5,0,0,0,",",,4,email,5,phone,13,lastname,14,username,15,address,17,pwd,20,firstname,11,dob_day,19,dob_year,21,dob_month
+#corruptionxparsed.txt,2,0,0,0,:,,1,username,2,email,3,ip,4,pwd_hash,5,pwd_salt
+#hortinews.txt,1,0,0,0,",",,1,phone,2,email,3,pwd_hash,4,lastname,5,firstname
+#230K%20Passwords.txt,0,0,0,0,:,,0,pwd_hash,1,pwd
+#GMAILSUSclean.txt,0,0,0,0,",",,0,email,1,name
+#GMAILSUSclean.txt.1,0,0,0,0,",",,0,email,1,name
+#GMAILSUSclean.txt.1.txt,0,0,0,0,",",,0,email,1,name
+dox.txt,0,0,0,0,	,,0,dox
+#adobe.csv,0,0,0,0,",",,1,email,2,pwd_encryted,3,pwd_hint
 
